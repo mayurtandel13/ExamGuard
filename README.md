@@ -1,4 +1,4 @@
-# AI-Based Intelligent Exam Integrity and Behavioral Monitoring System
+#Exam Integrity and Monitaring System
 
 A complete modular software framework for multi-modal exam proctoring and behavioral integrity analysis.
 

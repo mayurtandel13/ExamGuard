@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam Integrity Extension</title>
+    <style>
+        body {
+            width: 280px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 16px;
+            background: #0f172a;
+            color: #f1f5f9;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 12px;
+        }
+        .status-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 12px;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #064e3b;
+            color: #34d399;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .desc {
+            font-size: 11.5px;
+            color: #94a3b8;
+            line-height: 1.45;
+        }
+        .btn-ping {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-ping:hover {
+            background: #1d4ed8;
+        }
+        .guarantee {
+            font-size: 10px;
+            color: #64748b;
+            border-top: 1px solid #334155;
+            padding-top: 8px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span style="font-size: 18px;">🛡️</span>
+        <span>Exam Integrity Extension</span>
+    </div>
+    <div class="status-card">
+        <div class="status-badge">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #34d399; display: inline-block;"></span>
+            ACTIVE IN CHROME (v1.0.0)
+        </div>
+        <div class="desc">
+            Loaded in Chrome. Automatically announces presence to ExamGuard AI environment scanner via DOM and HTTP beacons.
+        </div>
+        <button id="btn-ping" class="btn-ping">🔄 Trigger Detection Beacon</button>
+    </div>
+    <div class="guarantee">
+        🔒 <strong>ExamGuard Security:</strong> Operates strictly on examination domains (localhost / 127.0.0.1) for proctoring verification.
+    </div>
+
+    <script>
+        document.getElementById("btn-ping").addEventListener("click", () => {
+            fetch("http://127.0.0.1:8585/api/extension_event", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    session_id: "PORTAL_ACTIVE_SESSION",
+                    student_id: "STU-2026-081",
+                    extension_name: "Exam Integrity Extension",
+                    stage: "PRE_EXAM",
+                    source: "MANUAL_POPUP_PING",
+                    timestamp: Date.now()
+                })
+            }).then(() => {
+                const btn = document.getElementById("btn-ping");
+                btn.innerText = "✅ Beacon Sent to ExamGuard!";
+                setTimeout(() => { btn.innerText = "🔄 Trigger Detection Beacon"; }, 2500);
+            }).catch(() => {
+                alert("Beacon dispatched to local server.");
+            });
+        });
+    </script>
+</body>
+</html>

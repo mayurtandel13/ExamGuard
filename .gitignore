@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments (DO NOT COMMIT - very large)
+venv/
+venv312/
+env/
+.venv/
+ENV/
+
+# YOLO & Deep Learning Model Weights (downloaded at runtime)
+*.pt
+*.onnx
+*.engine
+
+# SQLite Database & Runtime Logs (DO NOT COMMIT student data)
+*.db
+*.sqlite
+*.sqlite3
+logs/
+*.log
+*.csv
+
+# Temporary test image frames
+frame_*.jpg
+frame_*.png
+
+# Ignore generic json logs, but KEEP the Chrome Extension manifest!
+*.json
+!extension/manifest.json
+
+# IDE / Editor Files & OS caches
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Streamlit local credentials & state
+.streamlit/
